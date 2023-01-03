@@ -9,7 +9,7 @@ import SearchFilters from '../components/SearchFilters';
 import { baseUrl, fetchApi } from '../utils/fetchApi';
 import noresult from '../assets/images/noresult.svg'
 
-const Search = ({ properties }) => {
+const Search = ({ properties }: any) => {
   const [searchFilters, setSearchFilters] = useState(false);
   const router = useRouter();
 
@@ -35,7 +35,7 @@ const Search = ({ properties }) => {
         Properties {router.query.purpose}
       </Text>
       <Flex flexWrap='wrap'>
-        {properties.map((property) => <Property property={property} key={property.id} />)}
+        {properties.map((property:any) => <Property property={property} key={property.id} />)}
       </Flex>
       {properties.length === 0 && (
         <Flex justifyContent='center' alignItems='center' flexDir='column' marginTop='5' marginBottom='5'>
@@ -47,7 +47,7 @@ const Search = ({ properties }) => {
   );
 };
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({ query }: any) {
   const purpose = query.purpose || 'for-rent';
   const rentFrequency = query.rentFrequency || 'yearly';
   const minPrice = query.minPrice || '0';

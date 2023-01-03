@@ -8,7 +8,24 @@ import millify from 'millify';
 import { baseUrl, fetchApi } from '../../utils/fetchApi';
 import ImageScrollbar from '../../components/ImageScrollbar';
 
-const PropertyDetails = ({ propertyDetails: { price, rentFrequency, rooms, title, baths, area, agency, isVerified, description, type, purpose, furnishingStatus, amenities, photos } }) => (
+type PropertyDetailsprops={
+  price: any;
+  rentFrequency: any;
+  rooms: any;
+  title: any;
+  baths: any;
+  area: any;
+  agency: any;
+  isVerified: any;
+  description: any;
+  type: any;
+  purpose: any;
+  furnishingStatus: any;
+  amenities: any;
+  photos: any;
+}
+
+const PropertyDetails:React.FunctionComponent<PropertyDetailsprops> = ({ propertyDetails: { price, rentFrequency, rooms, title, baths, area, agency, isVerified, description, type, purpose, furnishingStatus, amenities, photos } }: any) => (
   <Box maxWidth='1000px' margin='auto' p='4'>
     {photos && <ImageScrollbar data={photos} />}
     <Box w='full' p='6'>
@@ -47,8 +64,8 @@ const PropertyDetails = ({ propertyDetails: { price, rentFrequency, rooms, title
     <Box>
       {amenities.length && <Text fontSize='2xl' fontWeight='black' marginTop='5'>Facilites:</Text>}
         <Flex flexWrap='wrap'>
-          {amenities?.map((item) => (
-              item?.amenities?.map((amenity) => (
+          {amenities?.map((item: any) => (
+              item?.amenities?.map((amenity: any) => (
                 <Text key={amenity.text} fontWeight='bold' color='blue.400' fontSize='l' p='2' bg='gray.200' m='1' borderRadius='5'>
                   {amenity.text}
                 </Text>
@@ -61,7 +78,7 @@ const PropertyDetails = ({ propertyDetails: { price, rentFrequency, rooms, title
 
 export default PropertyDetails;
 
-export async function getServerSideProps({ params: { id } }) {
+export async function getServerSideProps({ params: { id } }:any) {
   const data = await fetchApi(`${baseUrl}/properties/detail?externalID=${id}`);
   
   return {
